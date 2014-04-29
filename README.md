@@ -1,4 +1,1 @@
-Q
-=
-
-Web-based ODP (Offline Document Processor) Utility
+![Screenshot](https://raw.githubusercontent.com/vovn/q/master/img/screenshot.png)
