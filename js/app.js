@@ -1,6 +1,6 @@
 'use strict';
 
-window.Q = (function(Backbone, Marionette) {
+var Q = (function(Backbone, Marionette) {
 
   var C = {},
     M = {},
@@ -8,24 +8,10 @@ window.Q = (function(Backbone, Marionette) {
 
   // Job(s) model/collection 
   M.Job = Backbone.Model.extend({});
-  var i = 0;
+
   C.Jobs = Backbone.Collection.extend({ 
     model: M.Job,
-    url: 'http://localhost/q-api'//,
-    // comparator: function(a, b) {
-    //   a = a.get('sort');
-    //   b = b.get('sort');
-    //   if (a > b) {
-    //     return 1;
-    //   }
-    //   if (a < b) {
-    //     return -1;
-    //   }
-    //   return 0;
-    // },
-    // comparator: function(job) {
-    //   return job.get('sort'); //.replace(/[^0-9]/g, '');
-    // }
+    url: 'http://localhost/q-api'
   });
 
   // Job view
@@ -75,8 +61,8 @@ window.Q = (function(Backbone, Marionette) {
 })(Backbone, Marionette);
 
 // get pending jobs
-var jobs = new window.Q.Collections.Jobs();
-new window.Q.Views.Jobs({collection: jobs});
+var jobs = new Q.Collections.Jobs();
+new Q.Views.Jobs({collection: jobs});
 jobs.fetch();
 
 var fetchJobs = function() {
@@ -113,7 +99,4 @@ jobs.on('sync', function() {
 });
 
 $('#refreshBtn').on('click', fetchJobs);
-
-var currentWindow = chrome.app.window.current();
-$('#closeBtn').on('click', currentWindow.close.bind(currentWindow));
 setInterval(fetchJobs, 5000);
